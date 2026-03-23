@@ -1,0 +1,72 @@
+{
+  "colors": {
+    "accent1": "#1C1CB8",
+    "accent2": "#8B1A1A",
+    "background": "#F5F0E8",
+    "backgroundDark": "#EDE7DA",
+    "backgroundMid": "#E2DAC9",
+    "text": "#1C1A17",
+    "muted": "#7a6a58"
+  },
+  "fonts": {
+    "display": "Bebas Neue",
+    "body": "DM Sans"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "label": "Hero",
+      "fields": {
+        "eyebrow": "Amy + Niki present",
+        "title1": "Headshot",
+        "title2": "Workshop",
+        "subtitle": "Easy, fun, and actually enjoyable. We take care of the details so you can show up feeling confident and leave with images you love.",
+        "date": "Friday, TBD",
+        "time": "9am – 5pm",
+        "location": "Hollywood Home",
+        "price": "$225 / person",
+        "includesLine": "Hair & makeup touchups · Wardrobe direction · Photography"
+      }
+    },
+    {
+      "id": "includes",
+      "label": "Includes Bar",
+      "fields": {
+        "items": "Curated location · Pro photographer · Hair & makeup touchups · Wardrobe direction · Coffee bar + light bites · 3 hi-res headshots"
+      }
+    },
+    {
+      "id": "slots",
+      "label": "Pick a Time",
+      "fields": {
+        "title": "Pick a Time",
+        "description": "Each slot is 1 hour — 40 min of hair & makeup touchups + wardrobe direction, followed by 20 min camera time. Bring your own outfits; we'll help you choose one to shoot in.",
+        "startHour": 9,
+        "startMin": 40,
+        "totalSlots": 18,
+        "lunchAfterMin": 705,
+        "lunchDurationMin": 30,
+        "takenSlots": [0, 1]
+      }
+    },
+    {
+      "id": "form",
+      "label": "Your Details",
+      "fields": {
+        "title": "Your Details",
+        "description": "Fill in your info below — one click submits everything and opens Venmo.",
+        "venmoHandle": "@amy-power",
+        "price": "225",
+        "notificationEmail": "headshots@takesallkinds.com",
+        "formspreeEndpoint": "headshots@takesallkinds.com"
+      }
+    },
+    {
+      "id": "footer",
+      "label": "Footer",
+      "fields": {
+        "text": "Hosted by Amy + Niki · Location shared upon payment confirmation · Questions? Reach out directly."
+      }
+    }
+  ]
+}
