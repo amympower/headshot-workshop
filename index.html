@@ -4,345 +4,126 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Headshot Workshop — Sign Up</title>
-<link id="google-fonts" rel="stylesheet" href="">
+<link id="gfonts" rel="stylesheet" href="">
 <style>
-  :root {
-    --accent1: #1C1CB8;
-    --accent2: #8B1A1A;
-    --bg: #F5F0E8;
-    --bg-dark: #EDE7DA;
-    --bg-mid: #E2DAC9;
-    --text: #1C1A17;
-    --muted: #7a6a58;
-    --border: rgba(28,26,23,0.12);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body, 'DM Sans'), sans-serif; font-weight: 300; min-height: 100vh; }
-
-  .hero { background: var(--bg); padding: 3.5rem 2rem 2rem; text-align: center; border-bottom: 1px solid var(--bg-mid); }
-  .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-  .hero h1 { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: clamp(4.5rem, 14vw, 9rem); line-height: 0.88; letter-spacing: 0.02em; color: var(--text); }
-  .hero h1 em { font-style: normal; color: var(--accent1); }
-  .hero-sub { margin-top: 1.25rem; font-size: 0.975rem; color: var(--muted); max-width: 420px; margin-inline: auto; line-height: 1.65; font-weight: 300; }
-  .hero-meta { display: flex; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap; border-top: 1px solid var(--bg-mid); border-bottom: 1px solid var(--bg-mid); }
-  .hero-meta-item { padding: 0.9rem 1.5rem; text-align: center; border-right: 1px solid var(--bg-mid); flex: 1; min-width: 110px; }
-  .hero-meta-item:last-child { border-right: none; }
-  .hero-meta-label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 3px; }
-  .hero-meta-value { font-size: 0.875rem; font-weight: 500; color: var(--text); }
-  .hero-price-row { margin-top: 1.75rem; font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--text); }
-  .hero-price-row span { color: var(--accent2); }
-
-  .includes-bar { background: var(--bg-dark); border-bottom: 1px solid var(--bg-mid); padding: 0.5rem 2rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-
-  .main { max-width: 820px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-
-  .section-title { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 2rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.2rem; }
-  .section-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; font-weight: 300; line-height: 1.6; }
-
-  .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 1.5rem; }
-  .slot-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 0.875rem; cursor: pointer; transition: all 0.12s ease; }
-  .slot-card:hover:not(.slot-taken):not(.slot-selected) { border-color: var(--text); transform: translateY(-1px); }
-  .slot-card.slot-selected { border-color: var(--accent1); border-width: 1.5px; box-shadow: inset 0 0 0 1px var(--accent1); }
-  .slot-card.slot-taken { opacity: 0.38; cursor: not-allowed; background: var(--bg-dark); border-color: transparent; }
-  .slot-time { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--text); }
-  .slot-label { font-size: 0.63rem; color: var(--muted); margin-top: 2px; font-weight: 300; }
-  .slot-status { display: inline-block; margin-top: 5px; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .slot-card.slot-selected .slot-status { color: var(--accent1); }
-
-  .selection-summary { display: none; border-left: 2px solid var(--accent1); padding: 0.75rem 1rem; margin-bottom: 2.5rem; background: rgba(28,28,184,0.04); border-radius: 0 6px 6px 0; }
-  .selection-summary.visible { display: block; }
-  .selection-summary strong { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--text); font-weight: 400; }
-  .selection-summary p { color: var(--muted); font-size: 0.78rem; margin-top: 2px; font-weight: 300; }
-
-  .form-section { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-  .form-row.full { grid-template-columns: 1fr; }
-  label { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 5px; }
-  input[type=text], input[type=email], input[type=tel] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-body, 'DM Sans'), sans-serif; font-size: 0.925rem; font-weight: 300; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.12s; }
-  input:focus { border-color: color-mix(in srgb, var(--accent1) 50%, transparent); background: #fff; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent1) 8%, transparent); }
-  textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-body, 'DM Sans'), sans-serif; font-size: 0.925rem; font-weight: 300; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.12s; resize: vertical; min-height: 80px; line-height: 1.55; }
-  textarea:focus { border-color: color-mix(in srgb, var(--accent1) 50%, transparent); background: #fff; }
-  textarea::placeholder, input::placeholder { color: #c0b09e; font-weight: 300; }
-  .optional-tag { font-size: 0.62rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: #c0b09e; margin-left: 4px; }
-  @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
-
-  .payment-divider { border: none; border-top: 1px solid var(--bg-mid); margin: 1.5rem 0 1.25rem; }
-  .payment-inline-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
-  .payment-inline-amount { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--text); line-height: 1; margin-bottom: 6px; }
-  .payment-inline-note { font-size: 0.82rem; color: var(--muted); line-height: 1.55; font-weight: 300; }
-  .payment-inline-note strong { color: var(--text); font-weight: 500; }
-
-  .no-slot-msg { display: none; color: var(--accent2); font-size: 0.78rem; font-weight: 500; margin-top: 0.75rem; }
-  .no-slot-msg.show { display: block; }
-
-  .submit-btn { width: 100%; margin-top: 1.25rem; background: var(--accent2); color: #fff; border: none; border-radius: 7px; padding: 1rem 1.25rem; font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 1.25rem; letter-spacing: 0.08em; cursor: pointer; transition: all 0.12s; line-height: 1.2; }
-  .submit-btn small { display: block; font-family: var(--font-body, 'DM Sans'), sans-serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.02em; opacity: 0.7; margin-top: 2px; }
-  .submit-btn:hover { filter: brightness(0.88); }
-  .submit-btn:active { transform: scale(0.99); }
-  .submit-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
-  .success-overlay { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 100; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2.5rem 2rem; overflow-y: auto; }
-  .success-overlay.show { display: flex; }
-  .success-mark { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 5rem; line-height: 1; color: var(--text); margin-bottom: 0.25rem; }
-  .success-h { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 3rem; letter-spacing: 0.04em; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
-  .success-slot { font-family: var(--font-display, 'Bebas Neue'), sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--accent2); margin: 0.5rem 0 1rem; }
-  .success-p { font-size: 0.9rem; color: var(--muted); max-width: 360px; line-height: 1.65; font-weight: 300; }
-  .success-p strong { color: var(--text); font-weight: 500; }
-  .success-venmo { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem; background: #3D95CE; color: #fff; padding: 11px 26px; border-radius: 99px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: opacity 0.12s; }
-  .success-venmo:hover { opacity: 0.88; }
-  .success-note { margin-top: 0.65rem; font-size: 0.7rem; color: rgba(90,74,58,0.45); }
-
-  footer { text-align: center; padding: 2rem; font-size: 0.72rem; color: rgba(90,74,58,0.4); border-top: 1px solid var(--bg-mid); font-weight: 300; letter-spacing: 0.03em; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg,#F5F0E8); color: var(--text,#1C1A17); font-family: var(--font-body,'DM Sans'),sans-serif; font-weight: 300; min-height: 100vh; }
+.hero { background: var(--bg,#F5F0E8); padding: 3.5rem 2rem 2rem; text-align: center; border-bottom: 1px solid var(--bg-mid,#E2DAC9); }
+.hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ec-heroEyebrow,#8B1A1A); margin-bottom: 0.75rem; }
+.hero h1 { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: clamp(4.5rem,14vw,9rem); line-height: 0.88; letter-spacing: 0.02em; color: var(--ec-heroTitle,#1C1A17); }
+.hero h1 em { font-style: normal; color: var(--ec-heroTitleAccent,#1C1CB8); }
+.hero-sub { margin-top: 1.25rem; font-size: 0.975rem; color: var(--ec-heroSubtitle,#7a6a58); max-width: 420px; margin-inline: auto; line-height: 1.65; font-weight: 300; }
+.hero-meta { display: flex; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap; border-top: 1px solid var(--bg-mid,#E2DAC9); border-bottom: 1px solid var(--bg-mid,#E2DAC9); }
+.hero-meta-item { padding: 0.9rem 1.5rem; text-align: center; border-right: 1px solid var(--bg-mid,#E2DAC9); flex: 1; min-width: 110px; }
+.hero-meta-item:last-child { border-right: none; }
+.hero-meta-label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ec-heroMetaLabel,#7a6a58); margin-bottom: 3px; }
+.hero-meta-value { font-size: 0.875rem; font-weight: 500; color: var(--ec-heroMetaValue,#1C1A17); }
+.hero-price-row { margin-top: 1.75rem; font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--ec-heroTitle,#1C1A17); }
+.hero-price-row span { color: var(--ec-heroIncludesLine,#8B1A1A); }
+.includes-bar { background: var(--ec-includesBarBg,#EDE7DA); border-bottom: 1px solid var(--bg-mid,#E2DAC9); padding: 0.5rem 2rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ec-includesBarText,#7a6a58); }
+.main { max-width: 820px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+.section-title { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 2rem; letter-spacing: 0.05em; color: var(--ec-sectionTitle,#1C1A17); margin-bottom: 0.2rem; }
+.section-sub { font-size: 0.85rem; color: var(--ec-sectionSubtitle,#7a6a58); margin-bottom: 1.25rem; font-weight: 300; line-height: 1.6; }
+.section-spacer { margin-top: 2.5rem; }
+.slots-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(130px,1fr)); gap: 8px; margin-bottom: 1.5rem; }
+.slot-card { background: #fff; border: 1px solid rgba(28,26,23,0.1); border-radius: 8px; padding: 0.75rem 0.875rem; cursor: pointer; transition: all 0.12s ease; }
+.slot-card:hover:not(.slot-taken):not(.slot-selected) { border-color: var(--text,#1C1A17); transform: translateY(-1px); }
+.slot-card.slot-selected { border-color: var(--ec-slotSelectedBorder,#1C1CB8); border-width: 1.5px; box-shadow: inset 0 0 0 1px var(--ec-slotSelectedBorder,#1C1CB8); }
+.slot-card.slot-taken { opacity: 0.38; cursor: not-allowed; background: var(--bg-dark,#EDE7DA); border-color: transparent; }
+.slot-time { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--ec-slotTime,#1C1A17); }
+.slot-label { font-size: 0.63rem; color: var(--ec-slotLabel,#7a6a58); margin-top: 2px; font-weight: 300; }
+.slot-status { display: inline-block; margin-top: 5px; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ec-slotAvailableBadge,#7a6a58); }
+.slot-card.slot-selected .slot-status { color: var(--ec-slotSelectedBorder,#1C1CB8); }
+.selection-summary { display: none; border-left: 2px solid var(--ec-selectionSummaryBorder,#1C1CB8); padding: 0.75rem 1rem; margin-bottom: 2.5rem; background: var(--ec-selectionSummaryBg,rgba(28,28,184,0.04)); border-radius: 0 6px 6px 0; }
+.selection-summary.visible { display: block; }
+.selection-summary strong { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--text,#1C1A17); font-weight: 400; }
+.selection-summary p { color: var(--ec-sectionSubtitle,#7a6a58); font-size: 0.78rem; margin-top: 2px; font-weight: 300; }
+.form-section { background: var(--ec-formCardBg,#fff); border: 1px solid rgba(28,26,23,0.1); border-radius: 12px; padding: 1.75rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-row.full { grid-template-columns: 1fr; }
+label { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ec-labelText,#7a6a58); margin-bottom: 5px; }
+input[type=text],input[type=email],input[type=tel] { width: 100%; padding: 10px 12px; border: 1px solid rgba(28,26,23,0.1); border-radius: 6px; font-family: var(--font-body,'DM Sans'),sans-serif; font-size: 0.925rem; font-weight: 300; background: var(--ec-inputBg,#F5F0E8); color: var(--text,#1C1A17); outline: none; transition: border-color 0.12s; }
+input:focus { border-color: var(--ec-slotSelectedBorder,#1C1CB8); background: #fff; }
+textarea { width: 100%; padding: 10px 12px; border: 1px solid rgba(28,26,23,0.1); border-radius: 6px; font-family: var(--font-body,'DM Sans'),sans-serif; font-size: 0.925rem; font-weight: 300; background: var(--ec-inputBg,#F5F0E8); color: var(--text,#1C1A17); outline: none; transition: border-color 0.12s; resize: vertical; min-height: 80px; line-height: 1.55; }
+textarea:focus { border-color: var(--ec-slotSelectedBorder,#1C1CB8); background: #fff; }
+textarea::placeholder,input::placeholder { color: #c0b09e; font-weight: 300; }
+.optional-tag { font-size: 0.62rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: #c0b09e; margin-left: 4px; }
+@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+.payment-divider { border: none; border-top: 1px solid var(--bg-mid,#E2DAC9); margin: 1.5rem 0 1.25rem; }
+.payment-inline-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ec-labelText,#7a6a58); margin-bottom: 4px; }
+.payment-inline-amount { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--ec-paymentAmount,#1C1A17); line-height: 1; margin-bottom: 6px; }
+.payment-inline-note { font-size: 0.82rem; color: var(--ec-paymentNote,#7a6a58); line-height: 1.55; font-weight: 300; }
+.payment-inline-note strong { color: var(--text,#1C1A17); font-weight: 500; }
+.no-slot-msg { display: none; color: var(--accent2,#8B1A1A); font-size: 0.78rem; font-weight: 500; margin-top: 0.75rem; }
+.no-slot-msg.show { display: block; }
+.submit-btn { width: 100%; margin-top: 1.25rem; background: var(--ec-submitBtnBg,#8B1A1A); color: var(--ec-submitBtnText,#fff); border: none; border-radius: 7px; padding: 1rem 1.25rem; font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.25rem; letter-spacing: 0.08em; cursor: pointer; transition: all 0.12s; line-height: 1.2; }
+.submit-btn small { display: block; font-family: var(--font-body,'DM Sans'),sans-serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.02em; opacity: 0.7; margin-top: 2px; }
+.submit-btn:hover { filter: brightness(0.88); }
+.submit-btn:active { transform: scale(0.99); }
+.submit-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.text-block { margin-bottom: 2.5rem; }
+.text-block h2 { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--ec-sectionTitle,#1C1A17); margin-bottom: 0.5rem; }
+.text-block p { font-size: 0.925rem; color: var(--ec-sectionSubtitle,#7a6a58); line-height: 1.7; font-weight: 300; }
+.faq-section { margin-bottom: 2.5rem; }
+.faq-list { display: flex; flex-direction: column; gap: 2px; }
+.faq-item { border-bottom: 1px solid var(--bg-mid,#E2DAC9); }
+.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1rem 0; font-family: var(--font-body,'DM Sans'),sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--ec-faqQuestion,#1C1A17); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.faq-question:hover { color: var(--accent1,#1C1CB8); }
+.faq-chevron { flex-shrink: 0; transition: transform 0.2s; font-size: 0.7rem; color: var(--ec-sectionSubtitle,#7a6a58); }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-answer { display: none; padding: 0 0 1rem; font-size: 0.875rem; color: var(--ec-faqAnswer,#7a6a58); line-height: 1.7; font-weight: 300; }
+.faq-item.open .faq-answer { display: block; }
+.success-overlay { display: none; position: fixed; inset: 0; background: var(--bg,#F5F0E8); z-index: 100; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2.5rem 2rem; overflow-y: auto; }
+.success-overlay.show { display: flex; }
+.success-mark { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 5rem; line-height: 1; color: var(--text,#1C1A17); margin-bottom: 0.25rem; }
+.success-h { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 3rem; letter-spacing: 0.04em; color: var(--text,#1C1A17); line-height: 1; margin-bottom: 0.5rem; }
+.success-slot { font-family: var(--font-display,'Bebas Neue'),sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--ec-submitBtnBg,#8B1A1A); margin: 0.5rem 0 1rem; }
+.success-p { font-size: 0.9rem; color: var(--ec-sectionSubtitle,#7a6a58); max-width: 360px; line-height: 1.65; font-weight: 300; }
+.success-p strong { color: var(--text,#1C1A17); font-weight: 500; }
+.success-venmo { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem; background: #3D95CE; color: #fff; padding: 11px 26px; border-radius: 99px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: opacity 0.12s; }
+.success-venmo:hover { opacity: 0.88; }
+.success-note { margin-top: 0.65rem; font-size: 0.7rem; color: rgba(90,74,58,0.45); }
+footer { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--ec-footerText,#7a6a58); border-top: 1px solid var(--bg-mid,#E2DAC9); font-weight: 300; letter-spacing: 0.03em; opacity: 0.7; }
 </style>
 </head>
 <body>
-
 <div id="app-root"></div>
-
 <div class="success-overlay" id="successOverlay">
   <p class="success-mark">✓</p>
   <h2 class="success-h">You're In</h2>
   <p class="success-slot" id="successSlot">—</p>
-  <p class="success-p" id="successP">Your spot is held. Venmo should have opened — send payment to lock it in. Once received, you'll get a confirmation with the location.</p>
-  <a class="success-venmo" id="successVenmo" href="https://venmo.com/amy-power" target="_blank">
+  <p class="success-p" id="successP"></p>
+  <a class="success-venmo" id="successVenmo" href="#" target="_blank">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 2c.5 2.3.7 4 .7 5.2 0 3.8-3.3 8.6-6 11.8H8.2L5.5 2.5l6.1-.6 1.4 10.2C14.5 9 16.2 5.5 16.2 3.2c0-.7-.1-1.4-.4-1.9L19.4 2z"/></svg>
-    <span id="successVenmoLabel">Open Venmo → @amy-power</span>
+    <span id="successVenmoLabel">Open Venmo</span>
   </a>
-  <p class="success-note" id="successNote">Note: "Your Name — Headshot Workshop"</p>
+  <p class="success-note" id="successNote"></p>
 </div>
-
 <script>
-let CFG = null;
-const TAKEN_SLOTS = [];
-let takenNames = {};
-let selectedSlot = null;
-let slots = [];
-
-async function loadConfig() {
-  try {
-    const r = await fetch('site-config.json?v=' + Date.now());
-    CFG = await r.json();
-  } catch(e) {
-    // fallback defaults
-    CFG = {"colors":{"accent1":"#1C1CB8","accent2":"#8B1A1A","background":"#F5F0E8","backgroundDark":"#EDE7DA","backgroundMid":"#E2DAC9","text":"#1C1A17","muted":"#7a6a58"},"fonts":{"display":"Bebas Neue","body":"DM Sans"},"sections":[{"id":"hero","fields":{"eyebrow":"Amy + Niki present","title1":"Headshot","title2":"Workshop","subtitle":"Easy, fun, and actually enjoyable.","date":"Friday, TBD","time":"9am – 5pm","location":"Hollywood Home","price":"$225 / person","includesLine":"Hair & makeup touchups · Wardrobe direction · Photography"}},{"id":"includes","fields":{"items":"Curated location · Pro photographer · Hair & makeup touchups · Wardrobe direction · Coffee bar + light bites · 3 hi-res headshots"}},{"id":"slots","fields":{"title":"Pick a Time","description":"Each slot is 1 hour — 40 min of hair & makeup touchups + wardrobe direction, followed by 20 min camera time.","startHour":9,"startMin":40,"totalSlots":18,"lunchAfterMin":705,"lunchDurationMin":30,"takenSlots":[0,1]}},{"id":"form","fields":{"title":"Your Details","description":"Fill in your info below — one click submits everything and opens Venmo.","venmoHandle":"@amy-power","price":"225","notificationEmail":"headshots@takesallkinds.com","formspreeEndpoint":"headshots@takesallkinds.com"}},{"id":"footer","fields":{"text":"Hosted by Amy + Niki · Location shared upon payment confirmation · Questions? Reach out directly."}}]};
-  }
-  applyConfig();
-  render();
-}
-
-function sec(id) { return CFG.sections.find(s => s.id === id)?.fields || {}; }
-
-function applyConfig() {
-  const c = CFG.colors;
-  const root = document.documentElement;
-  root.style.setProperty('--accent1', c.accent1);
-  root.style.setProperty('--accent2', c.accent2);
-  root.style.setProperty('--bg', c.background);
-  root.style.setProperty('--bg-dark', c.backgroundDark);
-  root.style.setProperty('--bg-mid', c.backgroundMid);
-  root.style.setProperty('--text', c.text);
-  root.style.setProperty('--muted', c.muted);
-  root.style.setProperty('--font-display', `'${CFG.fonts.display}'`);
-  root.style.setProperty('--font-body', `'${CFG.fonts.body}'`);
-
-  // Load Google Fonts
-  const fonts = [CFG.fonts.display, CFG.fonts.body].filter(Boolean);
-  const param = fonts.map(f => `family=${encodeURIComponent(f)}:wght@300;400;500;600`).join('&');
-  document.getElementById('google-fonts').href = `https://fonts.googleapis.com/css2?${param}&display=swap`;
-}
-
-function buildSlots() {
-  const sf = sec('slots');
-  const total = sf.totalSlots || 18;
-  const lunchAfterMin = sf.lunchAfterMin || 705; // minutes from midnight = 11:45am
-  const lunchDur = sf.lunchDurationMin || 30;
-  const takenArr = sf.takenSlots || [];
-  takenArr.forEach(i => { if (!TAKEN_SLOTS.includes(i)) TAKEN_SLOTS.push(i); });
-  takenNames = {};
-  takenArr.forEach(i => { takenNames[i] = i === 0 ? 'Amy' : i === 1 ? 'Niki' : 'Reserved'; });
-
-  slots = [];
-  let hour = sf.startHour ?? 9;
-  let min = sf.startMin ?? 40;
-  let lunchInserted = false;
-
-  for (let i = 0; i < total; i++) {
-    const totalMin = hour * 60 + min;
-    if (!lunchInserted && totalMin >= lunchAfterMin) {
-      lunchInserted = true;
-      const lunchEnd = totalMin + lunchDur;
-      hour = Math.floor(lunchEnd / 60);
-      min = lunchEnd % 60;
-    }
-    const hmuStart = formatTime(hour, min);
-    const photoStart = addMin(hour, min, 40);
-    const photoEnd = addMin(hour, min, 60);
-    slots.push({ index: i, hmuStart, photoStart: formatTime(photoStart.h, photoStart.m), photoEnd: formatTime(photoEnd.h, photoEnd.m) });
-    const next = addMin(hour, min, 25);
-    hour = next.h; min = next.m;
-  }
-}
-
-function formatTime(h, m) {
-  const ampm = h < 12 ? 'am' : 'pm';
-  const hh = h > 12 ? h - 12 : (h === 12 ? 12 : h);
-  const mm = m === 0 ? '' : `:${String(m).padStart(2,'0')}`;
-  return `${hh}${mm}${ampm}`;
-}
-function addMin(h, m, delta) {
-  const t = h * 60 + m + delta;
-  return { h: Math.floor(t/60), m: t%60 };
-}
-
-function render() {
-  buildSlots();
-  const h = sec('hero'), inc = sec('includes'), sl = sec('slots'), f = sec('form'), ft = sec('footer');
-  const includeItems = (inc.items || '').split('·').map(s => `<span>${s.trim()}</span>`).join('<span style="opacity:0.4">·</span>');
-
-  document.getElementById('app-root').innerHTML = `
-    <div class="hero">
-      <p class="hero-eyebrow">${h.eyebrow || ''}</p>
-      <h1>${h.title1 || 'Headshot'}<br><em>${h.title2 || 'Workshop'}</em></h1>
-      <p class="hero-sub">${h.subtitle || ''}</p>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><div class="hero-meta-label">Date</div><div class="hero-meta-value">${h.date || ''}</div></div>
-        <div class="hero-meta-item"><div class="hero-meta-label">Time</div><div class="hero-meta-value">${h.time || ''}</div></div>
-        <div class="hero-meta-item"><div class="hero-meta-label">Location</div><div class="hero-meta-value">${h.location || ''}</div></div>
-        <div class="hero-meta-item"><div class="hero-meta-label">Price</div><div class="hero-meta-value">${h.price || ''}</div></div>
-      </div>
-      <p class="hero-price-row">What's included: <span>${h.includesLine || ''}</span></p>
-    </div>
-
-    <div class="includes-bar">${includeItems}</div>
-
-    <div class="main">
-      <p class="section-title">${sl.title || 'Pick a Time'}</p>
-      <p class="section-sub">${sl.description || ''}</p>
-      <div class="slots-grid" id="slotsGrid"></div>
-      <div class="selection-summary" id="selectionSummary">
-        <strong id="summaryTime">—</strong>
-        <p id="summaryDetail">—</p>
-      </div>
-
-      <p class="section-title" style="margin-top:2.5rem">${f.title || 'Your Details'}</p>
-      <p class="section-sub">${f.description || ''}</p>
-      <div class="form-section">
-        <div class="form-row">
-          <div><label>First Name</label><input type="text" id="firstName" placeholder="Jane"></div>
-          <div><label>Last Name</label><input type="text" id="lastName" placeholder="Smith"></div>
-        </div>
-        <div class="form-row full"><div><label>Email</label><input type="email" id="email" placeholder="jane@example.com"></div></div>
-        <div class="form-row full"><div><label>Phone</label><input type="tel" id="phone" placeholder="(213) 555-0100"></div></div>
-        <div class="form-row full"><div>
-          <label>What are you hoping to get from your headshots? <span class="optional-tag">(optional)</span></label>
-          <textarea id="goals" placeholder="e.g. Updated LinkedIn photo, acting headshots, personal branding…"></textarea>
-        </div></div>
-        <hr class="payment-divider">
-        <p class="payment-inline-label">Payment via Venmo</p>
-        <p class="payment-inline-amount">$${f.price || '225'}</p>
-        <p class="payment-inline-note">Send to <strong>${f.venmoHandle || '@amy-power'}</strong>. The button below saves your info and opens Venmo simultaneously — add the note <strong>"Your Name — Headshot Workshop"</strong> when you pay.</p>
-        <p class="no-slot-msg" id="noSlotMsg">Please select a time slot above first.</p>
-        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
-          Reserve My Spot + Open Venmo
-          <small>Submits your info &amp; opens ${f.venmoHandle || '@amy-power'} on Venmo</small>
-        </button>
-      </div>
-    </div>
-    <footer>${ft.text || ''}</footer>
-  `;
-
-  renderSlots();
-
-  // Wire up success screen
-  const venmoHandle = (f.venmoHandle || '@amy-power').replace('@','');
-  document.getElementById('successVenmo').href = `https://venmo.com/${venmoHandle}`;
-  document.getElementById('successVenmoLabel').textContent = `Open Venmo → ${f.venmoHandle || '@amy-power'}`;
-  document.getElementById('successNote').textContent = `Note: "Your Name — Headshot Workshop"`;
-  document.getElementById('successP').innerHTML = `Your spot is held. Venmo should have opened — send <strong>$${f.price || '225'}</strong> to <strong>${f.venmoHandle || '@amy-power'}</strong> to lock it in. Once received, you'll get a confirmation with the location.`;
-}
-
-function renderSlots() {
-  const grid = document.getElementById('slotsGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  slots.forEach((slot, i) => {
-    const taken = TAKEN_SLOTS.includes(i);
-    const selected = selectedSlot === i;
-    const card = document.createElement('div');
-    card.className = `slot-card${taken ? ' slot-taken' : ''}${selected ? ' slot-selected' : ''}`;
-    if (!taken) card.onclick = () => selectSlot(i);
-    card.innerHTML = `<div class="slot-time">${slot.hmuStart}</div><div class="slot-label">1 hr · HMU touchups + photo</div><div class="slot-status">${taken ? 'Reserved' : 'Available'}</div>`;
-    grid.appendChild(card);
-  });
-}
-
-function selectSlot(i) {
-  selectedSlot = i;
-  renderSlots();
-  const slot = slots[i];
-  const s = document.getElementById('selectionSummary');
-  s.classList.add('visible');
-  document.getElementById('summaryTime').textContent = `${slot.hmuStart} – ${slot.photoEnd}`;
-  document.getElementById('summaryDetail').textContent = `Hair, makeup & wardrobe direction ${slot.hmuStart}–${slot.photoStart} · Camera time ${slot.photoStart}–${slot.photoEnd}`;
-  document.getElementById('noSlotMsg').classList.remove('show');
-}
-
-async function handleSubmit() {
-  if (selectedSlot === null) {
-    document.getElementById('noSlotMsg').classList.add('show');
-    document.getElementById('slotsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return;
-  }
-  const first = document.getElementById('firstName').value.trim();
-  const last = document.getElementById('lastName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const goals = document.getElementById('goals').value.trim();
-  if (!first || !last || !email) { alert('Please fill in your first name, last name, and email.'); return; }
-
-  const slot = slots[selectedSlot];
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = 'Reserving…';
-
-  const f = sec('form');
-  const venmoHandle = (f.venmoHandle || 'amy-power').replace('@','');
-  const venmoNote = encodeURIComponent(`${first} ${last} — Headshot Workshop`);
-  window.open(`https://venmo.com/${venmoHandle}?txn=pay&amount=${f.price || 225}&note=${venmoNote}`, '_blank');
-
-  try {
-    await fetch(`https://formspree.io/f/${f.formspreeEndpoint || f.notificationEmail}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: `New Sign-Up: ${first} ${last} — ${slot.hmuStart}`,
-        _replyto: email, name: `${first} ${last}`, email,
-        phone: phone || '(not provided)',
-        slot: `${slot.hmuStart} – ${slot.photoEnd}`,
-        slot_detail: `HMU ${slot.hmuStart}–${slot.photoStart} · Photo ${slot.photoStart}–${slot.photoEnd}`,
-        goals: goals || '(not provided)',
-      })
-    });
-  } catch(e) { console.warn('Notification failed:', e); }
-
-  TAKEN_SLOTS.push(selectedSlot);
-  document.getElementById('successSlot').textContent = `${slot.hmuStart} – ${slot.photoEnd}`;
-  document.getElementById('successOverlay').classList.add('show');
-  renderSlots();
-}
-
+let CFG=null,TAKEN=[],takenNames={},selectedSlot=null,slots=[];
+async function loadConfig(){try{const r=await fetch('site-config.json?v='+Date.now());CFG=await r.json();}catch(e){CFG=getDefaultCfg();}if(!CFG.elementColors)CFG.elementColors={};CFG.sections.forEach(s=>{if(!s.type)s.type=s.id;});applyConfig();render();}
+function applyConfig(){const r=document.documentElement,c=CFG.colors,ec=CFG.elementColors||{};const vars={'--accent1':c.accent1,'--accent2':c.accent2,'--bg':c.background,'--bg-dark':c.backgroundDark,'--bg-mid':c.backgroundMid,'--text':c.text,'--muted':c.muted,'--font-display':`'${CFG.fonts.display}'`,'--font-body':`'${CFG.fonts.body}'`};Object.entries(vars).forEach(([k,v])=>r.style.setProperty(k,v));Object.entries(ec).forEach(([k,v])=>r.style.setProperty(`--ec-${k}`,v));const fonts=[CFG.fonts.display,CFG.fonts.body].filter(Boolean);document.getElementById('gfonts').href='https://fonts.googleapis.com/css2?'+fonts.map(f=>`family=${encodeURIComponent(f)}:wght@300;400;500;600`).join('&')+'&display=swap';}
+function sec(id){return CFG.sections.find(s=>s.id===id);}
+function buildSlots(){const sf=sec('slots')?.fields||{};const total=sf.totalSlots||18,lunchAt=(sf.lunchAfterMin||705),lunchDur=(sf.lunchDurationMin||30);const taken=sf.takenSlots||[];TAKEN=[...taken];takenNames={};taken.forEach((i,idx)=>{takenNames[i]=idx===0?'Amy':idx===1?'Niki':'Reserved';});slots=[];let h=sf.startHour??9,m=sf.startMin??40,lunchDone=false;for(let i=0;i<total;i++){const totalM=h*60+m;if(!lunchDone&&totalM>=lunchAt){lunchDone=true;const e=totalM+lunchDur;h=Math.floor(e/60);m=e%60;}const hs=fmt(h,m),ps=addM(h,m,40),pe=addM(h,m,60);slots.push({i,hmuStart:hs,photoStart:fmt(ps.h,ps.m),photoEnd:fmt(pe.h,pe.m)});const nx=addM(h,m,25);h=nx.h;m=nx.m;}}
+function fmt(h,m){const ap=h<12?'am':'pm',hh=h>12?h-12:(h===12?12:h),mm=m===0?'':`\:${String(m).padStart(2,'0')}`;return `${hh}${mm}${ap}`;}
+function addM(h,m,d){const t=h*60+m+d;return{h:Math.floor(t/60),m:t%60};}
+function render(){buildSlots();const root=document.getElementById('app-root');let html='';CFG.sections.forEach(s=>{if(s.type==='hero')html+=renderHero(s);else if(s.type==='includes')html+=renderIncludes(s);else if(s.type==='slots')html+=`<div class="main">${renderSlots(s)}</div>`;else if(s.type==='form')html+=`<div class="main">${renderForm(s)}</div>`;else if(s.type==='faq')html+=`<div class="main">${renderFaq(s)}</div>`;else if(s.type==='text')html+=`<div class="main">${renderText(s)}</div>`;else if(s.type==='footer')html+=renderFooter(s);});root.innerHTML=html;renderSlotCards();wireSuccess();}
+function renderHero(s){const f=s.fields;return `<div class="hero"><p class="hero-eyebrow">${f.eyebrow||''}</p><h1>${f.title1||''}<br><em>${f.title2||''}</em></h1><p class="hero-sub">${f.subtitle||''}</p><div class="hero-meta"><div class="hero-meta-item"><div class="hero-meta-label">Date</div><div class="hero-meta-value">${f.date||''}</div></div><div class="hero-meta-item"><div class="hero-meta-label">Time</div><div class="hero-meta-value">${f.time||''}</div></div><div class="hero-meta-item"><div class="hero-meta-label">Location</div><div class="hero-meta-value">${f.location||''}</div></div><div class="hero-meta-item"><div class="hero-meta-label">Price</div><div class="hero-meta-value">${f.price||''}</div></div></div><p class="hero-price-row">What's included: <span>${f.includesLine||''}</span></p></div>`;}
+function renderIncludes(s){const items=(s.fields.items||'').split('·').map(t=>`<span>${t.trim()}</span>`).join('<span style="opacity:.35">·</span>');return `<div class="includes-bar">${items}</div>`;}
+function renderSlots(s){const f=s.fields;return `<p class="section-title">${f.title||'Pick a Time'}</p><p class="section-sub">${f.description||''}</p><div class="slots-grid" id="slotsGrid"></div><div class="selection-summary" id="selectionSummary"><strong id="summaryTime">—</strong><p id="summaryDetail">—</p></div>`;}
+function renderForm(s){const f=s.fields;return `<div class="section-spacer"><p class="section-title">${f.title||'Your Details'}</p><p class="section-sub">${f.description||''}</p><div class="form-section"><div class="form-row"><div><label>First Name</label><input type="text" id="firstName" placeholder="Jane"></div><div><label>Last Name</label><input type="text" id="lastName" placeholder="Smith"></div></div><div class="form-row full"><div><label>Email</label><input type="email" id="email" placeholder="jane@example.com"></div></div><div class="form-row full"><div><label>Phone</label><input type="tel" id="phone" placeholder="(213) 555-0100"></div></div><div class="form-row full"><div><label>What are you hoping to get from your headshots? <span class="optional-tag">(optional)</span></label><textarea id="goals" placeholder="e.g. Updated LinkedIn photo, acting headshots, personal branding…"></textarea></div></div><hr class="payment-divider"><p class="payment-inline-label">Payment via Venmo</p><p class="payment-inline-amount">$${f.price||'225'}</p><p class="payment-inline-note">Send to <strong>${f.venmoHandle||'@amy-power'}</strong>. The button below saves your info and opens Venmo simultaneously — add the note <strong>"Your Name — Headshot Workshop"</strong> when you pay.</p><p class="no-slot-msg" id="noSlotMsg">Please select a time slot above first.</p><button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Reserve My Spot + Open Venmo<small>Submits your info &amp; opens ${f.venmoHandle||'@amy-power'} on Venmo</small></button></div></div>`;}
+function renderFaq(s){const f=s.fields,items=f.items||[];const itemsHtml=items.map((it,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-question" onclick="toggleFaq(${i})"><span>${it.q||''}</span><span class="faq-chevron">▼</span></button><div class="faq-answer">${it.a||''}</div></div>`).join('');return `<div class="faq-section section-spacer">${f.title?`<p class="section-title">${f.title}</p>`:''}${f.description?`<p class="section-sub">${f.description}</p>`:''}<div class="faq-list">${itemsHtml}</div></div>`;}
+function renderText(s){const f=s.fields;return `<div class="text-block section-spacer">${f.title?`<h2>${f.title}</h2>`:''}${f.body?`<p>${f.body}</p>`:''}</div>`;}
+function renderFooter(s){return `<footer>${s.fields.text||''}</footer>`;}
+function toggleFaq(i){document.getElementById('faq-'+i)?.classList.toggle('open');}
+function renderSlotCards(){const grid=document.getElementById('slotsGrid');if(!grid)return;grid.innerHTML='';slots.forEach((slot,i)=>{const taken=TAKEN.includes(i),selected=selectedSlot===i;const card=document.createElement('div');card.className=`slot-card${taken?' slot-taken':''}${selected?' slot-selected':''}`;if(!taken)card.onclick=()=>selectSlot(i);card.innerHTML=`<div class="slot-time">${slot.hmuStart}</div><div class="slot-label">1 hr · HMU touchups + photo</div><div class="slot-status">${taken?'Reserved':'Available'}</div>`;grid.appendChild(card);});}
+function selectSlot(i){selectedSlot=i;renderSlotCards();const slot=slots[i],sum=document.getElementById('selectionSummary');if(sum){sum.classList.add('visible');document.getElementById('summaryTime').textContent=`${slot.hmuStart} – ${slot.photoEnd}`;document.getElementById('summaryDetail').textContent=`Hair, makeup & wardrobe direction ${slot.hmuStart}–${slot.photoStart} · Camera time ${slot.photoStart}–${slot.photoEnd}`;}const nm=document.getElementById('noSlotMsg');if(nm)nm.classList.remove('show');}
+function wireSuccess(){const f=sec('form')?.fields||{};const vh=(f.venmoHandle||'@amy-power').replace('@','');document.getElementById('successVenmo').href=`https://venmo.com/${vh}`;document.getElementById('successVenmoLabel').textContent=`Open Venmo → ${f.venmoHandle||'@amy-power'}`;document.getElementById('successNote').textContent=`Note: "Your Name — Headshot Workshop"`;document.getElementById('successP').innerHTML=`Your spot is held. Venmo should have opened — send <strong>$${f.price||'225'}</strong> to <strong>${f.venmoHandle||'@amy-power'}</strong> to lock it in. Once received, you'll get a confirmation with the location.`;}
+async function handleSubmit(){if(selectedSlot===null){document.getElementById('noSlotMsg')?.classList.add('show');document.getElementById('slotsGrid')?.scrollIntoView({behavior:'smooth',block:'start'});return;}const first=document.getElementById('firstName')?.value.trim();const last=document.getElementById('lastName')?.value.trim();const email=document.getElementById('email')?.value.trim();const phone=document.getElementById('phone')?.value.trim();const goals=document.getElementById('goals')?.value.trim();if(!first||!last||!email){alert('Please fill in your first name, last name, and email.');return;}const slot=slots[selectedSlot],btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Reserving…';const f=sec('form')?.fields||{};const vh=(f.venmoHandle||'amy-power').replace('@','');const note=encodeURIComponent(`${first} ${last} — Headshot Workshop`);window.open(`https://venmo.com/${vh}?txn=pay&amount=${f.price||225}&note=${note}`,'_blank');try{await fetch(`https://formspree.io/f/${f.formspreeEndpoint||f.notificationEmail}`,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:`New Sign-Up: ${first} ${last} — ${slot.hmuStart}`,_replyto:email,name:`${first} ${last}`,email,phone:phone||'(not provided)',slot:`${slot.hmuStart} – ${slot.photoEnd}`,slot_detail:`HMU ${slot.hmuStart}–${slot.photoStart} · Photo ${slot.photoStart}–${slot.photoEnd}`,goals:goals||'(not provided)'})});}catch(e){console.warn('Notification failed:',e);}TAKEN.push(selectedSlot);document.getElementById('successSlot').textContent=`${slot.hmuStart} – ${slot.photoEnd}`;document.getElementById('successOverlay').classList.add('show');renderSlotCards();}
+function getDefaultCfg(){return{colors:{accent1:'#1C1CB8',accent2:'#8B1A1A',background:'#F5F0E8',backgroundDark:'#EDE7DA',backgroundMid:'#E2DAC9',text:'#1C1A17',muted:'#7a6a58'},elementColors:{},fonts:{display:'Bebas Neue',body:'DM Sans'},sections:[{id:'hero',type:'hero',label:'Hero',fields:{eyebrow:'Amy + Niki present',title1:'Headshot',title2:'Workshop',subtitle:'Easy, fun, and actually enjoyable.',date:'Friday, TBD',time:'9am – 5pm',location:'Hollywood Home',price:'$225 / person',includesLine:'Hair & makeup touchups · Wardrobe direction · Photography'}},{id:'includes',type:'includes',label:'Includes Bar',fields:{items:'Curated location · Pro photographer · Hair & makeup touchups · Wardrobe direction · Coffee bar + light bites · 3 hi-res headshots'}},{id:'slots',type:'slots',label:'Pick a Time',fields:{title:'Pick a Time',description:'Each slot is 1 hour — 40 min of hair & makeup touchups + wardrobe direction, followed by 20 min camera time.',startHour:9,startMin:40,totalSlots:18,lunchAfterMin:705,lunchDurationMin:30,takenSlots:[0,1]}},{id:'form',type:'form',label:'Your Details',fields:{title:'Your Details',description:'Fill in your info below — one click submits everything and opens Venmo.',venmoHandle:'@amy-power',price:'225',notificationEmail:'headshots@takesallkinds.com',formspreeEndpoint:'headshots@takesallkinds.com'}},{id:'footer',type:'footer',label:'Footer',fields:{text:'Hosted by Amy + Niki · Location shared upon payment confirmation · Questions? Reach out directly.'}}]};}
 loadConfig();
-
-// Hot-reload from admin editor
-window.addEventListener('message', e => {
-  if (e.data?.type === 'cfg_update' && e.data.cfg) {
-    CFG = e.data.cfg;
-    TAKEN_SLOTS.length = 0;
-    selectedSlot = null;
-    applyConfig();
-    render();
-  }
-});
-if (window.parent !== window) window.parent.postMessage({ type: 'cfg_ready' }, '*');
+window.addEventListener('message',e=>{if(e.data?.type==='cfg_update'&&e.data.cfg){CFG=e.data.cfg;TAKEN=[];selectedSlot=null;applyConfig();render();}});
+if(window.parent!==window)window.parent.postMessage({type:'cfg_ready'},'*');
 </script>
 </body>
 </html>
