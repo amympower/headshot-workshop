@@ -8,119 +8,106 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background: #f0ede8; color: #1a1a1a; min-height: 100vh; font-size: 14px; }
-
-/* LOGIN */
-#loginScreen {
-  position: fixed; inset: 0; background: #f0ede8;
-  display: flex; align-items: center; justify-content: center; z-index: 999;
-}
+#loginScreen { position: fixed; inset: 0; background: #f0ede8; display: flex; align-items: center; justify-content: center; z-index: 999; }
 .login-box { background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 2.5rem; width: 340px; text-align: center; }
-.login-box h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
-.login-box p { font-size: 0.8rem; color: #888; margin-bottom: 1.5rem; }
-.login-box input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.9rem; margin-bottom: 10px; outline: none; font-family: inherit; }
+.login-box h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.2rem; }
+.login-box p { font-size: 0.78rem; color: #888; margin-bottom: 1.5rem; }
+.login-box input[type=password] { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.9rem; margin-bottom: 10px; outline: none; font-family: inherit; }
 .login-box input:focus { border-color: #1C1CB8; }
-.login-btn { width: 100%; padding: 10px; background: #1C1CB8; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
-.login-btn:hover { background: #1414a0; }
-.login-error { color: #8B1A1A; font-size: 0.78rem; margin-top: 8px; display: none; }
-
-/* LAYOUT */
+.login-primary-btn { width: 100%; padding: 10px; background: #1C1CB8; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.login-primary-btn:hover { background: #1414a0; }
+.login-error { color: #8B1A1A; font-size: 0.75rem; margin-top: 8px; display: none; }
 #adminApp { display: none; height: 100vh; overflow: hidden; }
-.admin-layout { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
-
-/* SIDEBAR */
+.admin-layout { display: grid; grid-template-columns: 360px 1fr; height: 100vh; }
 .sidebar { background: #fff; border-right: 1px solid #e5e2dc; display: flex; flex-direction: column; overflow: hidden; }
-.sidebar-header { padding: 1rem 1.25rem; border-bottom: 1px solid #e5e2dc; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.sidebar-header h2 { font-size: 0.95rem; font-weight: 600; }
-.sidebar-header span { font-size: 0.7rem; color: #888; }
+.sidebar-header { padding: 0.875rem 1.25rem; border-bottom: 1px solid #e5e2dc; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.sidebar-header h2 { font-size: 0.9rem; font-weight: 600; }
+.sidebar-header span { font-size: 0.68rem; color: #aaa; }
 .sidebar-tabs { display: flex; border-bottom: 1px solid #e5e2dc; flex-shrink: 0; }
-.tab-btn { flex: 1; padding: 0.6rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; border: none; background: none; cursor: pointer; color: #888; border-bottom: 2px solid transparent; transition: all 0.12s; font-family: inherit; }
+.tab-btn { flex: 1; padding: 0.55rem 0.5rem; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; border: none; background: none; cursor: pointer; color: #aaa; border-bottom: 2px solid transparent; transition: all 0.12s; font-family: inherit; }
 .tab-btn.active { color: #1C1CB8; border-bottom-color: #1C1CB8; }
-.sidebar-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
-
-/* FIELD GROUPS */
-.field-group { margin-bottom: 1.25rem; }
-.field-group label { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 5px; }
-.field-group input[type=text],
-.field-group input[type=email],
-.field-group input[type=number],
-.field-group input[type=password],
-.field-group select,
-.field-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.875rem; outline: none; font-family: inherit; transition: border-color 0.12s; background: #faf9f7; }
-.field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: #1C1CB8; background: #fff; }
-.field-group textarea { min-height: 72px; resize: vertical; line-height: 1.5; }
-.color-row { display: flex; align-items: center; gap: 8px; }
-.color-row input[type=color] { width: 36px; height: 32px; padding: 2px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; flex-shrink: 0; background: #faf9f7; }
-.color-row input[type=text] { flex: 1; }
-
-/* SECTION REORDER */
+.sidebar-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem 0.5rem; }
+.field-group { margin-bottom: 0.875rem; }
+.field-group > label { display: block; font-size: 0.63rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: #999; margin-bottom: 4px; }
+.field-group input[type=text],.field-group input[type=email],.field-group input[type=number],.field-group input[type=password],.field-group select,.field-group textarea { width: 100%; padding: 7px 9px; border: 1px solid #e0ddd8; border-radius: 5px; font-size: 0.85rem; outline: none; font-family: inherit; transition: border-color 0.12s; background: #faf9f7; color: #1a1a1a; }
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus { border-color: #1C1CB8; background: #fff; }
+.field-group textarea { min-height: 60px; resize: vertical; line-height: 1.5; }
+.color-row { display: flex; align-items: center; gap: 7px; }
+.color-row input[type=color] { width: 32px; height: 30px; padding: 2px 3px; border: 1px solid #e0ddd8; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+.color-row input[type=text] { flex: 1; font-family: monospace; font-size: 0.8rem; }
+.field-divider { border: none; border-top: 1px solid #eeebe5; margin: 0.875rem 0; }
+.field-section-label { font-size: 0.61rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #c0b9b0; margin-bottom: 0.6rem; margin-top: 0.25rem; display: flex; align-items: center; gap: 6px; }
+.field-section-label::after { content:''; flex:1; height:1px; background:#eee; }
 .section-list { display: flex; flex-direction: column; gap: 6px; }
-.section-item { background: #faf9f7; border: 1px solid #e5e2dc; border-radius: 8px; padding: 0.75rem 1rem; cursor: grab; display: flex; align-items: center; gap: 10px; transition: box-shadow 0.12s; user-select: none; }
-.section-item:active { cursor: grabbing; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-.section-item.dragging { opacity: 0.5; }
-.section-item.drag-over { border-color: #1C1CB8; background: rgba(28,28,184,0.04); }
-.drag-handle { color: #ccc; font-size: 1.1rem; flex-shrink: 0; }
-.section-item-label { font-size: 0.875rem; font-weight: 500; }
-.section-item-hint { font-size: 0.7rem; color: #aaa; margin-left: auto; }
-
-/* DIVIDERS */
-.field-divider { border: none; border-top: 1px solid #e5e2dc; margin: 1rem 0; }
-.field-section-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; margin-bottom: 0.75rem; margin-top: 0.25rem; }
-
-/* GITHUB SETTINGS */
-.gh-status { font-size: 0.75rem; padding: 6px 10px; border-radius: 5px; background: #f0f0f0; color: #666; margin-bottom: 10px; }
-.gh-status.ok { background: #e6f4ea; color: #2d6a4f; }
-.gh-status.err { background: #fce8e8; color: #8B1A1A; }
-
-/* PUBLISH BAR */
-.publish-bar { padding: 1rem 1.25rem; border-top: 1px solid #e5e2dc; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-.publish-btn { width: 100%; padding: 10px; background: #8B1A1A; color: #fff; border: none; border-radius: 7px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.12s; }
-.publish-btn:hover { background: #711515; }
-.publish-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.preview-btn { width: 100%; padding: 9px; background: #fff; color: #1a1a1a; border: 1px solid #ddd; border-radius: 7px; font-size: 0.85rem; font-weight: 500; cursor: pointer; font-family: inherit; }
-.preview-btn:hover { background: #faf9f7; }
-.publish-status { font-size: 0.75rem; color: #888; text-align: center; min-height: 1rem; }
-.publish-status.ok { color: #2d6a4f; }
-.publish-status.err { color: #8B1A1A; }
-
-/* PREVIEW PANE */
-.preview-pane { background: #e8e4de; display: flex; flex-direction: column; overflow: hidden; }
-.preview-topbar { padding: 0.6rem 1rem; background: #fff; border-bottom: 1px solid #e5e2dc; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.preview-topbar span { font-size: 0.72rem; color: #888; }
-.preview-url { font-size: 0.72rem; color: #1C1CB8; text-decoration: none; flex: 1; text-align: right; }
-.preview-frame-wrap { flex: 1; overflow: hidden; padding: 1rem; }
+.sec-item { background: #faf9f7; border: 1px solid #e5e2dc; border-radius: 8px; cursor: grab; user-select: none; transition: box-shadow 0.12s, border-color 0.12s; overflow: hidden; }
+.sec-item:active { cursor: grabbing; }
+.sec-item.dragging { opacity: 0.4; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.sec-item.drag-over { border-color: #1C1CB8; background: rgba(28,28,184,0.04); }
+.sec-item-row { display: flex; align-items: center; gap: 8px; padding: 0.625rem 0.875rem; }
+.sec-drag { color: #ccc; font-size: 0.9rem; flex-shrink: 0; }
+.sec-badge { font-size: 0.57rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: #eee; color: #888; padding: 2px 5px; border-radius: 3px; flex-shrink: 0; }
+.sec-name-input { flex: 1; border: none; background: transparent; font-family: inherit; font-size: 0.85rem; font-weight: 500; color: #1a1a1a; outline: none; min-width: 0; }
+.sec-name-input:focus { background: #fff; border-radius: 3px; padding: 1px 5px; }
+.sec-edit-toggle { font-size: 0.68rem; color: #aaa; background: none; border: none; cursor: pointer; padding: 2px 6px; border-left: 1px solid #eee; margin-left: 2px; flex-shrink: 0; }
+.sec-edit-toggle:hover { color: #1C1CB8; }
+.sec-delete { font-size: 0.68rem; color: #ddd; background: none; border: none; cursor: pointer; padding: 2px 4px; flex-shrink: 0; }
+.sec-delete:hover { color: #8B1A1A; }
+.sec-inline-panel { display: none; border-top: 1px solid #eee; padding: 0.75rem 0.875rem 0.875rem; background: #fdfdfc; }
+.sec-inline-panel.open { display: block; }
+.faq-item-box { background: #fff; border: 1px solid #e5e2dc; border-radius: 6px; padding: 0.625rem; margin-bottom: 7px; }
+.faq-item-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.faq-item-num { font-size: 0.62rem; font-weight: 700; color: #ccc; }
+.faq-rm { margin-left: auto; font-size: 0.68rem; color: #ddd; background: none; border: none; cursor: pointer; font-family: inherit; }
+.faq-rm:hover { color: #8B1A1A; }
+.faq-add { width: 100%; padding: 6px; background: #fff; border: 1px dashed #d0cdc7; border-radius: 5px; font-family: inherit; font-size: 0.75rem; color: #aaa; cursor: pointer; margin-top: 4px; }
+.faq-add:hover { border-color: #1C1CB8; color: #1C1CB8; }
+.add-section-btn { width: 100%; margin-top: 8px; padding: 8px; background: #fff; border: 1.5px dashed #d0cdc7; border-radius: 8px; font-family: inherit; font-size: 0.8rem; font-weight: 500; color: #aaa; cursor: pointer; transition: all 0.12s; }
+.add-section-btn:hover { border-color: #1C1CB8; color: #1C1CB8; }
+.type-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 8px; }
+.type-opt { padding: 0.625rem; background: #faf9f7; border: 1px solid #e5e2dc; border-radius: 7px; cursor: pointer; text-align: center; transition: all 0.12s; }
+.type-opt:hover { border-color: #1C1CB8; background: rgba(28,28,184,0.04); }
+.type-opt-icon { font-size: 1.1rem; margin-bottom: 3px; }
+.type-opt-name { font-size: 0.72rem; font-weight: 600; color: #333; }
+.type-opt-desc { font-size: 0.62rem; color: #aaa; margin-top: 1px; }
+.cancel-add { width: 100%; margin-top: 6px; padding: 6px; background: none; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 0.78rem; color: #888; cursor: pointer; }
+.publish-bar { padding: 0.875rem 1.25rem; border-top: 1px solid #e5e2dc; flex-shrink: 0; }
+.publish-row { display: flex; gap: 7px; margin-bottom: 6px; }
+.pub-btn { flex: 1; padding: 9px; background: #8B1A1A; color: #fff; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.pub-btn:hover { background: #711515; }
+.pub-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.refresh-btn { padding: 9px 13px; background: #fff; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 0.85rem; cursor: pointer; color: #555; }
+.refresh-btn:hover { background: #faf9f7; }
+.pub-status { font-size: 0.7rem; color: #aaa; text-align: center; min-height: 1rem; }
+.pub-status.ok { color: #2d6a4f; }
+.pub-status.err { color: #8B1A1A; }
+.gh-note { font-size: 0.71rem; color: #aaa; line-height: 1.55; margin-bottom: 0.75rem; }
+.gh-status { font-size: 0.71rem; padding: 5px 9px; border-radius: 4px; background: #f0f0f0; color: #666; margin-bottom: 8px; display: none; }
+.gh-status.ok { background: #e6f4ea; color: #2d6a4f; display: block; }
+.gh-status.err { background: #fce8e8; color: #8B1A1A; display: block; }
+.gh-test-btn { width: 100%; padding: 7px; background: #fff; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 0.8rem; cursor: pointer; }
+.gh-test-btn:hover { background: #f5f5f5; }
+.preview-pane { background: #e5e2dc; display: flex; flex-direction: column; overflow: hidden; }
+.preview-topbar { padding: 0.5rem 1rem; background: #fff; border-bottom: 1px solid #e5e2dc; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.preview-topbar-label { font-size: 0.66rem; color: #aaa; }
+.preview-url-link { font-size: 0.66rem; color: #1C1CB8; text-decoration: none; margin-left: auto; }
+.preview-frame-wrap { flex: 1; overflow: hidden; padding: 0.75rem; }
 .preview-frame-wrap iframe { width: 100%; height: 100%; border: none; border-radius: 8px; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
-
-/* INSTRUCTIONS */
-.instructions { background: #fff7ed; border: 1px solid #f0d9b5; border-radius: 8px; padding: 1rem; font-size: 0.78rem; line-height: 1.6; color: #5a3e1b; }
-.instructions strong { font-weight: 600; }
-.instructions ol { padding-left: 1.25rem; margin-top: 0.5rem; }
-.instructions li { margin-bottom: 4px; }
-.instructions code { background: rgba(0,0,0,0.07); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 0.85em; }
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <h1>Site Editor</h1>
-    <p>Headshot Workshop Admin</p>
+    <p>Headshot Workshop</p>
     <input type="password" id="loginPw" placeholder="Password" onkeydown="if(event.key==='Enter')tryLogin()">
-    <button class="login-btn" onclick="tryLogin()">Sign In</button>
+    <button class="login-primary-btn" onclick="tryLogin()">Sign In</button>
     <p class="login-error" id="loginError">Incorrect password.</p>
   </div>
 </div>
-
-<!-- ADMIN APP -->
 <div id="adminApp">
   <div class="admin-layout">
-
-    <!-- SIDEBAR -->
     <div class="sidebar">
-      <div class="sidebar-header">
-        <h2>Site Editor</h2>
-        <span>Headshot Workshop</span>
-      </div>
+      <div class="sidebar-header"><h2>Site Editor</h2><span>Headshot Workshop</span></div>
       <div class="sidebar-tabs">
         <button class="tab-btn active" onclick="showTab('content')" id="tab-content">Content</button>
         <button class="tab-btn" onclick="showTab('design')" id="tab-design">Design</button>
@@ -129,378 +116,70 @@ body { font-family: 'DM Sans', sans-serif; background: #f0ede8; color: #1a1a1a; 
       </div>
       <div class="sidebar-body" id="sidebarBody"></div>
       <div class="publish-bar">
-        <button class="publish-btn" onclick="publishSite()" id="publishBtn">Publish to GitHub Pages</button>
-        <button class="preview-btn" onclick="refreshPreview()">Refresh Preview</button>
-        <p class="publish-status" id="publishStatus"></p>
+        <div class="publish-row">
+          <button class="pub-btn" onclick="publishSite()" id="publishBtn">Publish to GitHub</button>
+          <button class="refresh-btn" onclick="refreshPreview()" title="Refresh preview">↺</button>
+        </div>
+        <p class="pub-status" id="publishStatus"></p>
       </div>
     </div>
-
-    <!-- PREVIEW -->
     <div class="preview-pane">
       <div class="preview-topbar">
-        <span>Live Preview</span>
-        <a class="preview-url" id="previewUrl" href="#" target="_blank">—</a>
+        <span class="preview-topbar-label">Live Preview</span>
+        <a class="preview-url-link" id="previewUrl" href="#" target="_blank">—</a>
       </div>
-      <div class="preview-frame-wrap">
-        <iframe id="previewFrame" src="index.html"></iframe>
-      </div>
+      <div class="preview-frame-wrap"><iframe id="previewFrame" src="index.html"></iframe></div>
     </div>
-
   </div>
 </div>
-
 <script>
-// ─── AUTH ───────────────────────────────────────────────
-const PASS_HASH = '7c1e6843e8d04dd8e83c3f7b2bb9c3a8d1e6f9c2a5b8d1e4f7a2c5b8e1d4f7a0'; // amyandniki
-async function hash(s) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-async function tryLogin() {
-  const pw = document.getElementById('loginPw').value;
-  const h = await hash(pw);
-  if (pw === 'amyandniki') {
+function tryLogin() {
+  if (document.getElementById('loginPw').value === 'amyandniki') {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminApp').style.display = 'block';
     init();
-  } else {
-    document.getElementById('loginError').style.display = 'block';
-  }
+  } else { document.getElementById('loginError').style.display = 'block'; }
 }
-
-// ─── STATE ──────────────────────────────────────────────
-let CFG = null;
-let activeTab = 'content';
-let dragSrc = null;
-
-const FONT_OPTIONS = [
-  'Bebas Neue', 'Anton', 'Black Han Sans', 'Oswald', 'Russo One',
-  'DM Sans', 'Inter', 'Lato', 'Poppins', 'Nunito', 'Raleway',
-  'Playfair Display', 'Merriweather', 'Libre Baskerville'
-];
-
-const COLOR_LABELS = {
-  accent1: 'Accent 1 (Blue)',
-  accent2: 'Accent 2 (Red)',
-  background: 'Background',
-  backgroundDark: 'Background Dark',
-  backgroundMid: 'Background Mid',
-  text: 'Text',
-  muted: 'Muted Text'
-};
-
-const SECTION_FIELD_LABELS = {
-  hero: { eyebrow:'Eyebrow text', title1:'Title line 1', title2:'Title line 2', subtitle:'Subtitle', date:'Date', time:'Time', location:'Location', price:'Price', includesLine:'Includes line' },
-  includes: { items:'Items (separated by ·)' },
-  slots: { title:'Section title', description:'Description', startHour:'Start hour (24h)', startMin:'Start minute', totalSlots:'Total slots', lunchAfterMin:'Lunch starts after (mins from midnight)', lunchDurationMin:'Lunch duration (mins)', takenSlots:'Pre-taken slot indexes (comma separated)' },
-  form: { title:'Section title', description:'Description', venmoHandle:'Venmo handle', price:'Price (numbers only)', notificationEmail:'Notification email', formspreeEndpoint:'Formspree endpoint' },
-  footer: { text:'Footer text' }
-};
-
-async function init() {
-  try {
-    const r = await fetch('site-config.json?v=' + Date.now());
-    CFG = await r.json();
-  } catch(e) {
-    alert('Could not load site-config.json. Make sure it exists in the same folder as this file.');
-    return;
-  }
-  renderTab();
-  updatePreviewUrl();
-}
-
-function sec(id) { return CFG.sections.find(s => s.id === id); }
-
-// ─── TABS ────────────────────────────────────────────────
-function showTab(t) {
-  activeTab = t;
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + t).classList.add('active');
-  renderTab();
-}
-
-function renderTab() {
-  const body = document.getElementById('sidebarBody');
-  if (activeTab === 'content') renderContent(body);
-  else if (activeTab === 'design') renderDesign(body);
-  else if (activeTab === 'sections') renderSections(body);
-  else if (activeTab === 'publish') renderPublish(body);
-}
-
-// ─── CONTENT TAB ────────────────────────────────────────
-function renderContent(el) {
-  let html = '';
-  CFG.sections.forEach(section => {
-    const labels = SECTION_FIELD_LABELS[section.id] || {};
-    html += `<p class="field-section-title">${section.label}</p>`;
-    Object.entries(section.fields).forEach(([key, val]) => {
-      const label = labels[key] || key;
-      const isMultiline = typeof val === 'string' && (val.length > 60 || key === 'description' || key === 'subtitle' || key === 'items' || key === 'includesLine' || key === 'text');
-      const isNumber = typeof val === 'number';
-      const isArray = Array.isArray(val);
-      const inputVal = isArray ? val.join(', ') : val;
-
-      if (isMultiline) {
-        html += `<div class="field-group"><label>${label}</label><textarea data-section="${section.id}" data-key="${key}" oninput="updateField(this)">${escHtml(inputVal)}</textarea></div>`;
-      } else if (isNumber) {
-        html += `<div class="field-group"><label>${label}</label><input type="number" data-section="${section.id}" data-key="${key}" value="${inputVal}" oninput="updateField(this)"></div>`;
-      } else {
-        html += `<div class="field-group"><label>${label}</label><input type="text" data-section="${section.id}" data-key="${key}" value="${escHtml(inputVal)}" oninput="updateField(this)"></div>`;
-      }
-    });
-    html += `<hr class="field-divider">`;
-  });
-  el.innerHTML = html;
-}
-
-function updateField(input) {
-  const sId = input.dataset.section;
-  const key = input.dataset.key;
-  const s = sec(sId);
-  if (!s) return;
-  const original = s.fields[key];
-  if (Array.isArray(original)) {
-    s.fields[key] = input.value.split(',').map(v => v.trim()).map(Number).filter(n => !isNaN(n));
-  } else if (typeof original === 'number') {
-    s.fields[key] = parseFloat(input.value) || 0;
-  } else {
-    s.fields[key] = input.value;
-  }
-  saveLocalAndRefresh();
-}
-
-// ─── DESIGN TAB ─────────────────────────────────────────
-function renderDesign(el) {
-  let html = '<p class="field-section-title">Colors</p>';
-  Object.entries(CFG.colors).forEach(([key, val]) => {
-    html += `<div class="field-group"><label>${COLOR_LABELS[key] || key}</label>
-      <div class="color-row">
-        <input type="color" value="${val}" oninput="updateColor('${key}', this.value)">
-        <input type="text" value="${val}" maxlength="7" oninput="updateColorText('${key}', this)" placeholder="#000000">
-      </div></div>`;
-  });
-
-  html += `<hr class="field-divider"><p class="field-section-title">Fonts</p>`;
-  ['display','body'].forEach(role => {
-    html += `<div class="field-group"><label>${role === 'display' ? 'Display / Heading font' : 'Body font'}</label>
-      <select data-role="${role}" onchange="updateFont(this)">
-        ${FONT_OPTIONS.map(f => `<option value="${f}" ${CFG.fonts[role]===f?'selected':''}>${f}</option>`).join('')}
-      </select></div>`;
-  });
-
-  el.innerHTML = html;
-}
-
-function updateColor(key, val) {
-  CFG.colors[key] = val;
-  // sync text input
-  const inputs = document.querySelectorAll(`[oninput*="updateColor('${key}'"]`);
-  inputs.forEach(i => { if (i.type === 'text') i.value = val; });
-  saveLocalAndRefresh();
-}
-function updateColorText(key, input) {
-  const val = input.value;
-  if (/^#[0-9a-fA-F]{6}$/.test(val)) {
-    CFG.colors[key] = val;
-    const colorInput = input.previousElementSibling;
-    if (colorInput) colorInput.value = val;
-    saveLocalAndRefresh();
-  }
-}
-function updateFont(select) {
-  CFG.fonts[select.dataset.role] = select.value;
-  saveLocalAndRefresh();
-}
-
-// ─── SECTIONS TAB ───────────────────────────────────────
-function renderSections(el) {
-  let html = `<p style="font-size:0.78rem;color:#888;margin-bottom:0.75rem;line-height:1.5;">Drag to reorder sections on the page.</p>`;
-  html += `<div class="section-list" id="sectionList">`;
-  CFG.sections.forEach((s, i) => {
-    html += `<div class="section-item" draggable="true" data-index="${i}"
-      ondragstart="dragStart(event,${i})" ondragover="dragOver(event,${i})"
-      ondragleave="dragLeave(event)" ondrop="drop(event,${i})">
-      <span class="drag-handle">⠿</span>
-      <span class="section-item-label">${s.label}</span>
-      <span class="section-item-hint">drag to reorder</span>
-    </div>`;
-  });
-  html += `</div>`;
-  el.innerHTML = html;
-}
-
-function dragStart(e, i) { dragSrc = i; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
-function dragOver(e, i) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (i !== dragSrc) e.currentTarget.classList.add('drag-over'); }
-function dragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
-function drop(e, i) {
-  e.preventDefault();
-  e.currentTarget.classList.remove('drag-over');
-  if (dragSrc === null || dragSrc === i) return;
-  const arr = CFG.sections;
-  const item = arr.splice(dragSrc, 1)[0];
-  arr.splice(i, 0, item);
-  dragSrc = null;
-  saveLocalAndRefresh();
-  renderSections(document.getElementById('sidebarBody'));
-}
-
-// ─── PUBLISH TAB ────────────────────────────────────────
-function renderPublish(el) {
-  const gh = JSON.parse(localStorage.getItem('gh_settings') || '{}');
-  el.innerHTML = `
-    <div class="instructions">
-      <strong>One-time setup (takes 2 min):</strong>
-      <ol>
-        <li>Create a free account at <strong>github.com</strong></li>
-        <li>Create a new repository (e.g. <code>headshot-workshop</code>)</li>
-        <li>Go to Settings → Pages → Source: <strong>main branch</strong></li>
-        <li>Go to Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate new token. Check <strong>repo</strong> scope. Copy the token.</li>
-        <li>Upload <code>site-config.json</code> and <code>index.html</code> to the repo's main branch first.</li>
-        <li>Fill in the fields below and click Publish.</li>
-      </ol>
-    </div>
-    <hr class="field-divider">
-    <p class="field-section-title">GitHub Settings</p>
-    <div class="field-group"><label>GitHub Username</label><input type="text" id="gh_user" value="${gh.user||''}" placeholder="amypower" oninput="saveGhSettings()"></div>
-    <div class="field-group"><label>Repository Name</label><input type="text" id="gh_repo" value="${gh.repo||''}" placeholder="headshot-workshop" oninput="saveGhSettings()"></div>
-    <div class="field-group"><label>Personal Access Token</label><input type="password" id="gh_token" value="${gh.token||''}" placeholder="ghp_xxxxxxxxxxxx" oninput="saveGhSettings()"></div>
-    <div class="field-group"><label>Branch</label><input type="text" id="gh_branch" value="${gh.branch||'main'}" oninput="saveGhSettings()"></div>
-    <p id="gh_status" class="gh-status" style="display:none"></p>
-    <button class="login-btn" style="margin-top:8px" onclick="testGhConnection()">Test Connection</button>
-    <hr class="field-divider">
-    <p style="font-size:0.75rem;color:#888;line-height:1.5;">Your token is saved only in your browser's local storage and never sent anywhere except directly to GitHub's API.</p>
-  `;
-  updatePreviewUrl();
-}
-
-function saveGhSettings() {
-  localStorage.setItem('gh_settings', JSON.stringify({
-    user: document.getElementById('gh_user')?.value || '',
-    repo: document.getElementById('gh_repo')?.value || '',
-    token: document.getElementById('gh_token')?.value || '',
-    branch: document.getElementById('gh_branch')?.value || 'main',
-  }));
-  updatePreviewUrl();
-}
-
-function updatePreviewUrl() {
-  const gh = JSON.parse(localStorage.getItem('gh_settings') || '{}');
-  const url = gh.user && gh.repo ? `https://${gh.user}.github.io/${gh.repo}/` : '(set GitHub username + repo in Publish tab)';
-  document.getElementById('previewUrl').textContent = url;
-  document.getElementById('previewUrl').href = gh.user && gh.repo ? url : '#';
-}
-
-async function testGhConnection() {
-  const gh = JSON.parse(localStorage.getItem('gh_settings') || '{}');
-  const statusEl = document.getElementById('gh_status');
-  statusEl.style.display = 'block';
-  statusEl.className = 'gh-status';
-  statusEl.textContent = 'Testing…';
-  try {
-    const r = await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}`, {
-      headers: { Authorization: `token ${gh.token}`, Accept: 'application/vnd.github.v3+json' }
-    });
-    if (r.ok) { statusEl.className = 'gh-status ok'; statusEl.textContent = '✓ Connected successfully'; }
-    else { statusEl.className = 'gh-status err'; statusEl.textContent = `✗ Error ${r.status}: ${r.statusText}`; }
-  } catch(e) { statusEl.className = 'gh-status err'; statusEl.textContent = '✗ Network error: ' + e.message; }
-}
-
-// ─── PUBLISH ────────────────────────────────────────────
-async function publishSite() {
-  const gh = JSON.parse(localStorage.getItem('gh_settings') || '{}');
-  if (!gh.user || !gh.repo || !gh.token) {
-    alert('Please fill in your GitHub settings in the Publish tab first.');
-    showTab('publish');
-    return;
-  }
-
-  const btn = document.getElementById('publishBtn');
-  const status = document.getElementById('publishStatus');
-  btn.disabled = true;
-  status.className = 'publish-status';
-  status.textContent = 'Publishing…';
-
-  try {
-    // Publish site-config.json
-    await pushFile(gh, 'site-config.json', JSON.stringify(CFG, null, 2));
-    status.textContent = 'Config saved… publishing index.html…';
-
-    // Publish index.html — fetch the current one and push it unchanged (config drives rendering)
-    let indexContent;
-    try {
-      const r = await fetch('index.html?v=' + Date.now());
-      indexContent = await r.text();
-    } catch(e) { indexContent = null; }
-    if (indexContent) await pushFile(gh, 'index.html', indexContent);
-
-    // Publish admin.html
-    let adminContent;
-    try {
-      const r2 = await fetch('admin.html?v=' + Date.now());
-      adminContent = await r2.text();
-    } catch(e) { adminContent = null; }
-    if (adminContent) await pushFile(gh, 'admin.html', adminContent);
-
-    status.className = 'publish-status ok';
-    status.textContent = `✓ Published! Changes live at ${gh.user}.github.io/${gh.repo}/ in ~1 min.`;
-  } catch(e) {
-    status.className = 'publish-status err';
-    status.textContent = '✗ ' + e.message;
-  }
-  btn.disabled = false;
-}
-
-async function pushFile(gh, path, content) {
-  // Get existing SHA if file exists (required for update)
-  let sha = null;
-  try {
-    const r = await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}/contents/${path}?ref=${gh.branch||'main'}`, {
-      headers: { Authorization: `token ${gh.token}`, Accept: 'application/vnd.github.v3+json' }
-    });
-    if (r.ok) { const d = await r.json(); sha = d.sha; }
-  } catch(e) {}
-
-  const body = { message: `Update ${path} via site editor`, content: btoa(unescape(encodeURIComponent(content))), branch: gh.branch || 'main' };
-  if (sha) body.sha = sha;
-
-  const r = await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}/contents/${path}`, {
-    method: 'PUT',
-    headers: { Authorization: `token ${gh.token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) {
-    const err = await r.json();
-    throw new Error(`GitHub error on ${path}: ${err.message}`);
-  }
-}
-
-// ─── LOCAL SAVE + PREVIEW REFRESH ───────────────────────
-function saveLocalAndRefresh() {
-  localStorage.setItem('cfg_draft', JSON.stringify(CFG));
-  // Write updated config to the preview iframe via postMessage
-  const frame = document.getElementById('previewFrame');
-  if (frame && frame.contentWindow) {
-    frame.contentWindow.postMessage({ type: 'cfg_update', cfg: CFG }, '*');
-  }
-}
-
-function refreshPreview() {
-  const frame = document.getElementById('previewFrame');
-  frame.src = 'index.html?v=' + Date.now();
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-</script>
-
-<script>
-// Inject hot-reload listener into preview via iframe messaging
-window.addEventListener('message', e => {
-  if (e.data?.type === 'cfg_ready') {
-    saveLocalAndRefresh();
-  }
-});
+let CFG=null,activeTab='content',dragSrc=null,addingSection=false;
+const FONTS=['Bebas Neue','Anton','Oswald','Black Han Sans','Russo One','Teko','DM Sans','Inter','Lato','Poppins','Nunito','Raleway','Jost','Playfair Display','Merriweather','Libre Baskerville','Cormorant Garamond'];
+const ELEM_COLOR_GROUPS=[{g:'Hero',keys:[['heroEyebrow','Eyebrow text'],['heroTitle','Title (line 1)'],['heroTitleAccent','Title accent (line 2)'],['heroSubtitle','Subtitle'],['heroMetaLabel','Meta labels'],['heroMetaValue','Meta values'],['heroIncludesLine','Includes line']]},{g:'Includes Bar',keys:[['includesBarBg','Bar background'],['includesBarText','Bar text']]},{g:'Sections',keys:[['sectionTitle','Section titles'],['sectionSubtitle','Section descriptions']]},{g:'Slot Cards',keys:[['slotTime','Time text'],['slotLabel','Label text'],['slotAvailableBadge','Available badge'],['slotSelectedBorder','Selected border']]},{g:'Form',keys:[['formCardBg','Card background'],['labelText','Field labels'],['inputBg','Input background'],['paymentAmount','Payment amount'],['paymentNote','Payment note'],['submitBtnBg','Button background'],['submitBtnText','Button text']]},{g:'FAQ',keys:[['faqQuestion','Question text'],['faqAnswer','Answer text']]},{g:'Footer',keys:[['footerText','Footer text']]}];
+const SECTION_DEFS={hero:[{k:'eyebrow',l:'Eyebrow'},{k:'title1',l:'Title line 1'},{k:'title2',l:'Title line 2 (accent)'},{k:'subtitle',l:'Subtitle',ml:true},{k:'date',l:'Date'},{k:'time',l:'Time'},{k:'location',l:'Location'},{k:'price',l:'Price'},{k:'includesLine',l:'Includes line'}],includes:[{k:'items',l:'Items (separated by ·)',ml:true}],slots:[{k:'title',l:'Title'},{k:'description',l:'Description',ml:true},{k:'startHour',l:'Start hour',num:true},{k:'startMin',l:'Start minute',num:true},{k:'totalSlots',l:'Total slots',num:true},{k:'lunchAfterMin',l:'Lunch starts (mins from midnight, e.g. 705=11:45am)',num:true},{k:'lunchDurationMin',l:'Lunch duration (mins)',num:true},{k:'takenSlots',l:'Pre-taken slots (comma separated, e.g. 0, 1)',arr:true}],form:[{k:'title',l:'Title'},{k:'description',l:'Description',ml:true},{k:'venmoHandle',l:'Venmo handle'},{k:'price',l:'Price (numbers only)'},{k:'notificationEmail',l:'Notification email'},{k:'formspreeEndpoint',l:'Formspree endpoint'}],faq:[{k:'title',l:'Title'},{k:'description',l:'Description',ml:true},{k:'items',l:'Questions',faq:true}],text:[{k:'title',l:'Title (optional)'},{k:'body',l:'Body text',ml:true}],footer:[{k:'text',l:'Footer text',ml:true}]};
+const TEMPLATES={faq:{type:'faq',label:'FAQ',fields:{title:'Frequently Asked Questions',description:'',items:[{q:'What should I bring?',a:"Bring 2–3 outfit options. We'll help you choose the best one."}]}},text:{type:'text',label:'Text Block',fields:{title:'',body:'Add your text here.'}},includes:{type:'includes',label:'Includes Bar',fields:{items:'Item 1 · Item 2 · Item 3'}},hero:{type:'hero',label:'Hero',fields:{eyebrow:'',title1:'Title',title2:'',subtitle:'',date:'',time:'',location:'',price:'',includesLine:''}}};
+async function init(){try{const r=await fetch('site-config.json?v='+Date.now());CFG=await r.json();}catch(e){alert('Could not load site-config.json.');return;}if(!CFG.elementColors)CFG.elementColors={};CFG.sections.forEach(s=>{if(!s.type)s.type=s.id;});renderTab();updatePreviewUrl();}
+function showTab(t){activeTab=t;addingSection=false;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');renderTab();}
+function renderTab(){const el=document.getElementById('sidebarBody');if(activeTab==='content')renderContent(el);else if(activeTab==='design')renderDesign(el);else if(activeTab==='sections')renderSections(el);else if(activeTab==='publish')renderPublish(el);}
+function renderContent(el){let h='';CFG.sections.forEach((s,si)=>{h+=`<div class="field-section-label">${s.label}</div>`;h+=sectionFields(s,si);h+=`<hr class="field-divider">`;});el.innerHTML=h;}
+function sectionFields(s,si){const defs=SECTION_DEFS[s.type]||[];return defs.map(d=>{if(d.faq)return faqEditor(s,si);const v=s.fields[d.k]??'';const dv=d.arr?(Array.isArray(v)?v.join(', '):v):v;if(d.ml)return `<div class="field-group"><label>${d.l}</label><textarea data-si="${si}" data-k="${d.k}" oninput="upField(this)">${esc(dv)}</textarea></div>`;if(d.num)return `<div class="field-group"><label>${d.l}</label><input type="number" data-si="${si}" data-k="${d.k}" value="${dv}" oninput="upField(this)"></div>`;return `<div class="field-group"><label>${d.l}</label><input type="text" data-si="${si}" data-k="${d.k}" value="${esc(String(dv))}" oninput="upField(this)"></div>`;}).join('');}
+function faqEditor(s,si){const items=s.fields.items||[];let h=`<div class="field-group"><label>Questions & Answers</label>`;items.forEach((it,ii)=>{h+=`<div class="faq-item-box"><div class="faq-item-head"><span class="faq-item-num">Q${ii+1}</span><button class="faq-rm" onclick="rmFaq(${si},${ii})">✕ remove</button></div><div class="field-group" style="margin-bottom:5px"><label>Question</label><input type="text" data-si="${si}" data-ii="${ii}" data-fk="q" value="${esc(it.q||'')}" oninput="upFaq(this)"></div><div class="field-group" style="margin-bottom:0"><label>Answer</label><textarea data-si="${si}" data-ii="${ii}" data-fk="a" oninput="upFaq(this)">${esc(it.a||'')}</textarea></div></div>`;});h+=`<button class="faq-add" onclick="addFaq(${si})">+ Add question</button></div>`;return h;}
+function upField(input){const si=+input.dataset.si,k=input.dataset.k;const s=CFG.sections[si];if(!s)return;const orig=s.fields[k];if(Array.isArray(orig))s.fields[k]=input.value.split(',').map(v=>v.trim()).map(Number).filter(n=>!isNaN(n));else if(input.type==='number')s.fields[k]=parseFloat(input.value)||0;else s.fields[k]=input.value;push();}
+function upFaq(input){const si=+input.dataset.si,ii=+input.dataset.ii,fk=input.dataset.fk;CFG.sections[si].fields.items[ii][fk]=input.value;push();}
+function addFaq(si){(CFG.sections[si].fields.items=CFG.sections[si].fields.items||[]).push({q:'New question?',a:'Answer here.'});renderTab();push();}
+function rmFaq(si,ii){CFG.sections[si].fields.items.splice(ii,1);renderTab();push();}
+function renderDesign(el){let h=`<div class="field-section-label">Global palette</div>`;const pLabels={accent1:'Accent 1 (blue)',accent2:'Accent 2 (red)',background:'Page background',backgroundDark:'Background dark',backgroundMid:'Background mid',text:'Body text',muted:'Muted text'};Object.entries(CFG.colors).forEach(([k,v])=>{h+=colorField(k,v,pLabels[k]||k,'p');});h+=`<hr class="field-divider">`;ELEM_COLOR_GROUPS.forEach(grp=>{h+=`<div class="field-section-label">${grp.g}</div>`;grp.keys.forEach(([k,l])=>{h+=colorField(k,CFG.elementColors[k]||'#888888',l,'e');});});h+=`<hr class="field-divider"><div class="field-section-label">Fonts</div>`;['display','body'].forEach(role=>{h+=`<div class="field-group"><label>${role==='display'?'Display / Headings':'Body text'}</label><select data-role="${role}" onchange="upFont(this)">${FONTS.map(f=>`<option value="${f}" ${CFG.fonts[role]===f?'selected':''}>${f}</option>`).join('')}</select></div>`;});el.innerHTML=h;}
+function colorField(k,v,label,scope){const hex=/^#[0-9a-fA-F]{6}$/.test(v)?v:'#888888';return `<div class="field-group"><label>${label}</label><div class="color-row"><input type="color" value="${hex}" oninput="upColor('${k}','${scope}',this.value,this)"><input type="text" value="${v}" maxlength="30" placeholder="#000000" oninput="upColorText('${k}','${scope}',this)"></div></div>`;}
+function upColor(k,scope,val,input){if(scope==='p')CFG.colors[k]=val;else CFG.elementColors[k]=val;const t=input.nextElementSibling;if(t)t.value=val;push();}
+function upColorText(k,scope,input){const v=input.value.trim();if(/^#[0-9a-fA-F]{3,8}$/.test(v)||v.startsWith('rgb')||v.startsWith('hsl')){if(scope==='p')CFG.colors[k]=v;else CFG.elementColors[k]=v;const c=input.previousElementSibling;if(c&&/^#[0-9a-fA-F]{6}$/.test(v))c.value=v;push();}}
+function upFont(sel){CFG.fonts[sel.dataset.role]=sel.value;push();}
+function renderSections(el){let h=`<p style="font-size:0.72rem;color:#aaa;line-height:1.5;margin-bottom:0.75rem;">Drag to reorder. Click <strong style="color:#555">Edit</strong> to expand a section's fields.</p>`;h+=`<div class="section-list">`;CFG.sections.forEach((s,i)=>{h+=`<div class="sec-item" draggable="true" data-index="${i}" ondragstart="ds(event,${i})" ondragover="dov(event,${i})" ondragleave="dlv(event)" ondrop="drp(event,${i})"><div class="sec-item-row"><span class="sec-drag">⠿⠿</span><span class="sec-badge">${s.type}</span><input class="sec-name-input" type="text" value="${esc(s.label)}" oninput="upSecLabel(${i},this.value)"><button class="sec-edit-toggle" onclick="toggleInline(${i})">Edit ▾</button><button class="sec-delete" onclick="delSec(${i})" title="Delete">✕</button></div><div class="sec-inline-panel" id="sip-${i}">${sectionFields(s,i)}</div></div>`;});h+=`</div>`;if(addingSection){h+=`<div style="margin-top:10px"><p style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#aaa;margin-bottom:7px">Choose type to add</p><div class="type-picker">${[['faq','❓','FAQ','Questions & answers'],['text','¶','Text block','Heading + paragraph'],['includes','✓','Includes bar','Feature strip'],['hero','◈','Hero','Full title section']].map(([t,ic,n,d])=>`<div class="type-opt" onclick="addSec('${t}')"><div class="type-opt-icon">${ic}</div><div class="type-opt-name">${n}</div><div class="type-opt-desc">${d}</div></div>`).join('')}</div><button class="cancel-add" onclick="addingSection=false;renderTab()">Cancel</button></div>`;}else{h+=`<button class="add-section-btn" onclick="addingSection=true;renderTab()">+ Add section</button>`;}el.innerHTML=h;}
+function toggleInline(i){document.getElementById('sip-'+i)?.classList.toggle('open');}
+function upSecLabel(i,v){CFG.sections[i].label=v;push();}
+function delSec(i){if(!confirm(`Delete "${CFG.sections[i].label}"?`))return;CFG.sections.splice(i,1);renderTab();push();}
+function addSec(type){const tmpl=JSON.parse(JSON.stringify(TEMPLATES[type]||TEMPLATES.text));tmpl.id='_'+Math.random().toString(36).slice(2,8);CFG.sections.push(tmpl);addingSection=false;renderTab();push();}
+function ds(e,i){dragSrc=i;setTimeout(()=>e.currentTarget.classList.add('dragging'),0);e.dataTransfer.effectAllowed='move';}
+function dov(e,i){e.preventDefault();if(i!==dragSrc)e.currentTarget.classList.add('drag-over');}
+function dlv(e){e.currentTarget.classList.remove('drag-over');}
+function drp(e,i){e.preventDefault();e.currentTarget.classList.remove('drag-over');document.querySelectorAll('.sec-item').forEach(el=>el.classList.remove('dragging'));if(dragSrc===null||dragSrc===i)return;const item=CFG.sections.splice(dragSrc,1)[0];CFG.sections.splice(i,0,item);dragSrc=null;renderTab();push();}
+function renderPublish(el){const gh=getGh();el.innerHTML=`<p class="gh-note">Enter your GitHub details once — they're saved in your browser only.</p><div class="field-section-label">GitHub connection</div><div id="gh_status" class="gh-status"></div><div class="field-group"><label>GitHub Username</label><input type="text" id="gh_user" value="${gh.user||''}" placeholder="yourusername" oninput="saveGh()"></div><div class="field-group"><label>Repository Name</label><input type="text" id="gh_repo" value="${gh.repo||''}" placeholder="headshot-workshop" oninput="saveGh()"></div><div class="field-group"><label>Personal Access Token</label><input type="password" id="gh_token" value="${gh.token||''}" placeholder="ghp_xxxxxxxxxxxx" oninput="saveGh()"></div><div class="field-group"><label>Branch</label><input type="text" id="gh_branch" value="${gh.branch||'main'}" oninput="saveGh()"></div><button class="gh-test-btn" onclick="testGh()">Test connection</button><hr class="field-divider"><p class="gh-note">Your token is stored only in your browser and sent only to GitHub's API — never to anyone else.</p>`;updatePreviewUrl();}
+function getGh(){return JSON.parse(localStorage.getItem('gh_settings')||'{}');}
+function saveGh(){localStorage.setItem('gh_settings',JSON.stringify({user:document.getElementById('gh_user')?.value||'',repo:document.getElementById('gh_repo')?.value||'',token:document.getElementById('gh_token')?.value||'',branch:document.getElementById('gh_branch')?.value||'main'}));updatePreviewUrl();}
+async function testGh(){const gh=getGh(),el=document.getElementById('gh_status');el.className='gh-status';el.textContent='Testing…';el.style.display='block';try{const r=await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}`,{headers:{Authorization:`token ${gh.token}`,Accept:'application/vnd.github.v3+json'}});el.className=r.ok?'gh-status ok':'gh-status err';el.textContent=r.ok?'✓ Connected!':'✗ Error '+r.status+' — check username, repo, and token.';}catch(e){el.className='gh-status err';el.textContent='✗ Network error: '+e.message;}}
+function updatePreviewUrl(){const gh=getGh(),url=gh.user&&gh.repo?`https://${gh.user}.github.io/${gh.repo}/`:'(set username + repo in Publish tab)';const el=document.getElementById('previewUrl');if(el){el.textContent=url;el.href=gh.user&&gh.repo?url:'#';}}
+async function publishSite(){const gh=getGh();if(!gh.user||!gh.repo||!gh.token){showTab('publish');alert('Fill in GitHub settings first.');return;}const btn=document.getElementById('publishBtn'),status=document.getElementById('publishStatus');btn.disabled=true;status.className='pub-status';status.textContent='Publishing…';try{await pushFile(gh,'site-config.json',JSON.stringify(CFG,null,2));status.textContent='Config saved… uploading pages…';for(const f of['index.html','admin.html']){try{const r=await fetch(f+'?v='+Date.now());if(r.ok)await pushFile(gh,f,await r.text());}catch(e){}}status.className='pub-status ok';status.textContent=`✓ Live at ${gh.user}.github.io/${gh.repo}/ in ~1 min.`;}catch(e){status.className='pub-status err';status.textContent='✗ '+e.message;}btn.disabled=false;}
+async function pushFile(gh,path,content){let sha=null;try{const r=await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}/contents/${path}?ref=${gh.branch||'main'}`,{headers:{Authorization:`token ${gh.token}`,Accept:'application/vnd.github.v3+json'}});if(r.ok)sha=(await r.json()).sha;}catch(e){}const body={message:`Update ${path}`,content:btoa(unescape(encodeURIComponent(content))),branch:gh.branch||'main'};if(sha)body.sha=sha;const r=await fetch(`https://api.github.com/repos/${gh.user}/${gh.repo}/contents/${path}`,{method:'PUT',headers:{Authorization:`token ${gh.token}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok){const err=await r.json();throw new Error(`${path}: ${err.message}`);}}
+function push(){localStorage.setItem('cfg_draft',JSON.stringify(CFG));const f=document.getElementById('previewFrame');if(f?.contentWindow)f.contentWindow.postMessage({type:'cfg_update',cfg:CFG},'*');}
+function refreshPreview(){document.getElementById('previewFrame').src='index.html?v='+Date.now();}
+window.addEventListener('message',e=>{if(e.data?.type==='cfg_ready')push();});
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body>
 </html>
