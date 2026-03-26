@@ -8,6 +8,35 @@
     "text": "#1C1A17",
     "muted": "#7a6a58"
   },
+  "elementColors": {
+    "heroEyebrow": "#8B1A1A",
+    "heroTitle": "#1C1A17",
+    "heroTitleAccent": "#1C1CB8",
+    "heroSubtitle": "#7a6a58",
+    "heroMetaLabel": "#7a6a58",
+    "heroMetaValue": "#1C1A17",
+    "heroIncludesLine": "#8B1A1A",
+    "includesBarBg": "#EDE7DA",
+    "includesBarText": "#7a6a58",
+    "sectionTitle": "#1C1A17",
+    "sectionSubtitle": "#7a6a58",
+    "slotTime": "#1C1A17",
+    "slotLabel": "#7a6a58",
+    "slotAvailableBadge": "#7a6a58",
+    "slotSelectedBorder": "#1C1CB8",
+    "selectionSummaryBorder": "#1C1CB8",
+    "selectionSummaryBg": "rgba(28,28,184,0.04)",
+    "formCardBg": "#ffffff",
+    "labelText": "#7a6a58",
+    "inputBg": "#F5F0E8",
+    "paymentAmount": "#1C1A17",
+    "paymentNote": "#7a6a58",
+    "submitBtnBg": "#8B1A1A",
+    "submitBtnText": "#ffffff",
+    "faqQuestion": "#1C1A17",
+    "faqAnswer": "#7a6a58",
+    "footerText": "#7a6a58"
+  },
   "fonts": {
     "display": "Bebas Neue",
     "body": "DM Sans"
@@ -15,6 +44,7 @@
   "sections": [
     {
       "id": "hero",
+      "type": "hero",
       "label": "Hero",
       "fields": {
         "eyebrow": "Amy + Niki present",
@@ -30,6 +60,7 @@
     },
     {
       "id": "includes",
+      "type": "includes",
       "label": "Includes Bar",
       "fields": {
         "items": "Curated location · Pro photographer · Hair & makeup touchups · Wardrobe direction · Coffee bar + light bites · 3 hi-res headshots"
@@ -37,6 +68,7 @@
     },
     {
       "id": "slots",
+      "type": "slots",
       "label": "Pick a Time",
       "fields": {
         "title": "Pick a Time",
@@ -51,6 +83,7 @@
     },
     {
       "id": "form",
+      "type": "form",
       "label": "Your Details",
       "fields": {
         "title": "Your Details",
@@ -63,6 +96,7 @@
     },
     {
       "id": "footer",
+      "type": "footer",
       "label": "Footer",
       "fields": {
         "text": "Hosted by Amy + Niki · Location shared upon payment confirmation · Questions? Reach out directly."
